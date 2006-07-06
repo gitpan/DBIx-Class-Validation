@@ -1,0 +1,20 @@
+---
+name: DBIx-Class-Validation
+version: 0.01000
+author:
+  - 'Aran C. Deltac <bluefeet@cpan.org>'
+abstract: Validate all data before submitting to your database.
+license: perl
+requires:
+  DBIx::Class: 0.06002
+  FormValidator::Simple: 0
+recommends:
+  Data::FormValidator: 0
+build_requires:
+  DBD::SQLite: 1.11
+  SQL::Translator: 0.07
+provides:
+  DBIx::Class::Validation:
+    file: lib/DBIx/Class/Validation.pm
+    version: 0.01000
+generated_by: Module::Build version 0.26
