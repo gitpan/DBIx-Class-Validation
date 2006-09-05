@@ -5,11 +5,12 @@ use warnings;
 
 use base qw( DBIx::Class );
 use English qw( -no_match_vars );
+use FormValidator::Simple 0.17;
 
 #local $^W = 0; # Silence C:D:I redefined sub errors.
 # Switched to C::D::Accessor which doesn't do this. Hate hate hate hate.
 
-our $VERSION = '0.01000';
+our $VERSION = '0.01001';
 
 __PACKAGE__->mk_classdata( 'validation_profile' );
 __PACKAGE__->mk_classdata( 'validation_auto' => 1 );
@@ -17,6 +18,7 @@ __PACKAGE__->mk_classdata( 'validation_filter' => 0 );
 __PACKAGE__->mk_classdata( '_validation_module_accessor' );
 
 __PACKAGE__->validation_module( 'FormValidator::Simple' );
+
 
 =head1 NAME
 
@@ -144,29 +146,9 @@ sub validate {
     my $self = shift;
     my %data = $self->get_columns;
     my $module = $self->validation_module;
-    my $profile;
-    # ----------------- NOTE --------------------
-    # FormValidator::Simple has a bug which eats the profile after
-    # it has been used once which is why dclone has been used. remove
-    # Storable::dclone once the bug has been fixed.
-    #
-    if ($module->isa('FormValidator::Simple')) {
-    	if (!eval "require Storable") {
-            $self->throw_exception("Sorable is required for use with FormValidator::Simple but could not be
-loaded because: $@");
-        }
-    	$profile = Storable::dclone( $self->validation_profile );
-    } else {
-     	$profile = $self->validation_profile;
-    }
-    # -------------------------------------------
-    
+    my $profile = $self->validation_profile;
     my $result = $module->check( \%data => $profile );
-    
-    # return $result if $result->success;
-    # $self->throw_exception( $result );
-    
-    #if (blessed $result && $result->success) {
+
     if ($result->success) {
     	if ($self->validation_filter && $result->can('valid')) {
     		 $self->set_column($_, $result->valid($_)) for ($result->valid);

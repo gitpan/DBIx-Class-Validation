@@ -1,4 +1,9 @@
 Revision history for DBIx::Class::Validation
 
+0.01001 Tue Sep 05 17:54:13 2006
+    - FormValidator::Simple 0.17 is now required to fix profile destruction
+        on first use
+    - Removed Storable::dclone code since it's no longer needed
+
 0.01000
-        - initial release
+    - initial release

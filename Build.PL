@@ -7,7 +7,7 @@ my %arguments = (
     module_name        => 'DBIx::Class::Validation',
     requires           => {
         'DBIx::Class'               => 0.06002,
-        'FormValidator::Simple'     => 0,
+        'FormValidator::Simple'     => 0.17,
     },
     build_requires      => {
         'DBD::SQLite'               => 1.11,
