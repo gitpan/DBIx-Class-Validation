@@ -1,5 +1,13 @@
 Revision history for DBIx::Class::Validation
 
+0.01002 Sat May 05 11:38:16 2007
+    - Converted to Module::Install
+    - RT#25356 (bokutin): validation now sets filter
+    - Converted tests away from deprecated compose_connection
+    - Jockey cargo tests, TEST_AUTHOR, DBICTest
+    - Much improved test coverage
+    - Build/test no longer requires SQL::Translator
+
 0.01001 Tue Sep 05 17:54:13 2006
     - FormValidator::Simple 0.17 is now required to fix profile destruction
         on first use

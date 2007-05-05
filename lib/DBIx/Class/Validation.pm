@@ -10,7 +10,7 @@ use FormValidator::Simple 0.17;
 #local $^W = 0; # Silence C:D:I redefined sub errors.
 # Switched to C::D::Accessor which doesn't do this. Hate hate hate hate.
 
-our $VERSION = '0.01001';
+our $VERSION = '0.01002';
 
 __PACKAGE__->mk_classdata( 'validation_profile' );
 __PACKAGE__->mk_classdata( 'validation_auto' => 1 );
@@ -69,6 +69,7 @@ sub validation {
     $self->validation_module( $args{module} ) if exists $args{module};
     $self->validation_profile( $args{profile} ) if exists $args{profile};
     $self->validation_auto( $args{auto} ) if exists $args{auto};
+    $self->validation_filter( $args{filter} ) if exists $args{filter};
 }
 
 =head2 validation_module
@@ -150,9 +151,9 @@ sub validate {
     my $result = $module->check( \%data => $profile );
 
     if ($result->success) {
-    	if ($self->validation_filter && $result->can('valid')) {
-    		 $self->set_column($_, $result->valid($_)) for ($result->valid);
-    	}
+        if ($self->validation_filter && $result->can('valid')) {
+            $self->set_column($_, $result->valid($_)) for ($result->valid);
+        }
         return $result;
     } else {
         $self->throw_exception($result);
@@ -201,6 +202,7 @@ Aran C. Deltac <bluefeet@cpan.org>
 =head1 CONTRIBUTERS
 
 Tom Kirkpatrick <tkp@cpan.org>
+Christopher Laco <claco@cpan.org>
 
 =head1 LICENSE
 
