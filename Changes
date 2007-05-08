@@ -1,5 +1,10 @@
 Revision history for DBIx::Class::Validation
 
+0.01003 Tue May 08 18:49:11 2007
+    - Fixed DBIC::Test comment snafu
+    - Profiles can now be a subref that will dynamically generate the
+        profile (John Napiorkowski)
+
 0.01002 Sat May 05 11:38:16 2007
     - Converted to Module::Install
     - RT#25356 (bokutin): validation now sets filter

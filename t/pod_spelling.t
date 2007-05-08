@@ -1,5 +1,5 @@
 #!perl -w
-# $Id: pod_spelling.t 3235 2007-05-05 16:23:08Z claco $
+# $Id: pod_spelling.t 3269 2007-05-08 23:52:01Z claco $
 use strict;
 use warnings;
 
@@ -26,3 +26,5 @@ Laco
 INSERTs
 UPDATEs
 pre
+subref
+Napiorkowski

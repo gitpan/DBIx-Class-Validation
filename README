@@ -49,7 +49,31 @@ METHODS
         { ... }
       );
 
-    Sets the profile that will be passed to the validation module.
+    Sets the profile that will be passed to the validation module. Expects
+    either a HASHREF or a reference to a subroutine. If it's a subref it
+    will be passed the result row object as it's first parameter so that you
+    can perform complex data validation for cases when you'd like to have
+    access to the actual result.
+
+    For example, you could use the following to return an error if the named
+    field is not unique in the table:
+
+        my $profile = sub {
+            my $result = shift @_;
+    
+            return {`   
+                required => [qw/email/],
+                constraint_methods => {    
+                    email => sub {
+                        my ($dvf, $val) = @_;
+                        return $result->result_source->resultset->find({email=>$val}) ? 0:1;
+                    },
+                },
+            };
+        };
+
+    Please note that the subref needs to return a hashref/arrayref suitable
+    for use in the validation module you have chosen.
 
   validation_auto
       __PACKAGE__->validation_auto( 1 );
@@ -94,7 +118,8 @@ AUTHOR
     Aran C. Deltac <bluefeet@cpan.org>
 
 CONTRIBUTERS
-    Tom Kirkpatrick <tkp@cpan.org> Christopher Laco <claco@cpan.org>
+    Tom Kirkpatrick <tkp@cpan.org> Christopher Laco <claco@cpan.org> John
+    Napiorkowski <jjn1056@yahoo.com>
 
 LICENSE
     You may distribute this code under the same terms as Perl itself.

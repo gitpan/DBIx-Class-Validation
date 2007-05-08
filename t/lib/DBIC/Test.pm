@@ -1,4 +1,4 @@
-# $Id: Test.pm 3236 2007-05-05 16:24:35Z claco $
+# $Id: Test.pm 3244 2007-05-06 00:45:21Z claco $
 package DBIC::Test;
 use strict;
 use warnings;
@@ -60,7 +60,7 @@ sub deploy_schema {
     my ($self, $schema, %options) = @_;
     my $eval = $options{'eval_deploy'};
 
-    eval 'use SdddQL::Translator';
+    eval 'use SQL::Translator';
     if (!$@ && !$options{'no_deploy'}) {
         eval {
             $schema->deploy();

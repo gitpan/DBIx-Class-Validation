@@ -10,7 +10,7 @@ use FormValidator::Simple 0.17;
 #local $^W = 0; # Silence C:D:I redefined sub errors.
 # Switched to C::D::Accessor which doesn't do this. Hate hate hate hate.
 
-our $VERSION = '0.01002';
+our $VERSION = '0.01003';
 
 __PACKAGE__->mk_classdata( 'validation_profile' );
 __PACKAGE__->mk_classdata( 'validation_auto' => 1 );
@@ -106,7 +106,30 @@ sub validation_module {
     { ... }
   );
 
-Sets the profile that will be passed to the validation module.
+Sets the profile that will be passed to the validation module.  Expects either
+a HASHREF or a reference to a subroutine.  If it's a subref it will be passed
+the result row object as it's first parameter so that you can perform complex
+data validation for cases when you'd like to have access to the actual result.
+
+For example, you could use the following to return an error if the named field
+is not unique in the table:
+
+    my $profile = sub {
+        my $result = shift @_;
+    
+        return {`   
+            required => [qw/email/],
+            constraint_methods => {    
+                email => sub {
+                    my ($dvf, $val) = @_;
+                    return $result->result_source->resultset->find({email=>$val}) ? 0:1;
+                },
+            },
+        };
+    };
+
+Please note that the subref needs to return a hashref/arrayref suitable for use
+in the validation module you have chosen.
 
 =head2 validation_auto
 
@@ -203,6 +226,7 @@ Aran C. Deltac <bluefeet@cpan.org>
 
 Tom Kirkpatrick <tkp@cpan.org>
 Christopher Laco <claco@cpan.org>
+John Napiorkowski <jjn1056@yahoo.com>
 
 =head1 LICENSE
 
