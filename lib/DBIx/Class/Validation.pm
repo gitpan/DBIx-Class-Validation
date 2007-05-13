@@ -1,23 +1,21 @@
+# $Id: Validation.pm 3312 2007-05-13 00:54:41Z claco $
 package DBIx::Class::Validation;
-
 use strict;
 use warnings;
 
-use base qw( DBIx::Class );
-use English qw( -no_match_vars );
-use FormValidator::Simple 0.17;
+BEGIN {
+    use base qw/DBIx::Class/;
+    use English qw/-no_match_vars/;
+    use FormValidator::Simple 0.17;
+};
 
-#local $^W = 0; # Silence C:D:I redefined sub errors.
-# Switched to C::D::Accessor which doesn't do this. Hate hate hate hate.
+our $VERSION = '0.01004';
 
-our $VERSION = '0.01003';
-
-__PACKAGE__->mk_classdata( 'validation_profile' );
-__PACKAGE__->mk_classdata( 'validation_auto' => 1 );
-__PACKAGE__->mk_classdata( 'validation_filter' => 0 );
-__PACKAGE__->mk_classdata( '_validation_module_accessor' );
-
-__PACKAGE__->validation_module( 'FormValidator::Simple' );
+__PACKAGE__->mk_classdata('validation_profile');
+__PACKAGE__->mk_classdata('validation_auto' => 1);
+__PACKAGE__->mk_classdata('validation_filter' => 0);
+__PACKAGE__->mk_classdata('_validation_module_accessor');
+__PACKAGE__->validation_module('FormValidator::Simple');
 
 
 =head1 NAME
@@ -63,14 +61,13 @@ if the corresponding argument is defined.
 =cut
 
 sub validation {
-    my $self = shift;
-    my %args = @_;
-    
-    $self->validation_module( $args{module} ) if exists $args{module};
-    $self->validation_profile( $args{profile} ) if exists $args{profile};
-    $self->validation_auto( $args{auto} ) if exists $args{auto};
-    $self->validation_filter( $args{filter} ) if exists $args{filter};
-}
+    my ($self, %args) = @_;
+
+    $self->validation_module($args{module}) if exists $args{module};
+    $self->validation_profile($args{profile}) if exists $args{profile};
+    $self->validation_auto($args{auto}) if exists $args{auto};
+    $self->validation_filter($args{filter}) if exists $args{filter};
+};
 
 =head2 validation_module
 
@@ -98,7 +95,7 @@ sub validation_module {
     };
 
     return ref $self->_validation_module_accessor;
-}
+};
 
 =head2 validation_profile
 
@@ -117,9 +114,9 @@ is not unique in the table:
     my $profile = sub {
         my $result = shift @_;
     
-        return {`   
+        return {
             required => [qw/email/],
-            constraint_methods => {    
+            constraint_methods => {
                 email => sub {
                     my ($dvf, $val) = @_;
                     return $result->result_source->resultset->find({email=>$val}) ? 0:1;
@@ -171,17 +168,21 @@ sub validate {
     my %data = $self->get_columns;
     my $module = $self->validation_module;
     my $profile = $self->validation_profile;
+
+    if (ref $profile eq 'CODE') {
+        $profile = $profile->($self);
+    };
     my $result = $module->check( \%data => $profile );
 
     if ($result->success) {
         if ($self->validation_filter && $result->can('valid')) {
-            $self->set_column($_, $result->valid($_)) for ($result->valid);
-        }
+            $self->$_($result->valid($_)) for ($result->valid);
+        };
         return $result;
     } else {
         $self->throw_exception($result);
     };
-}
+};
 
 =head1 EXTENDED METHODS
 
@@ -207,7 +208,7 @@ sub update {
     my $self = shift;
     $self->validate if $self->validation_auto;
     $self->next::method(@_);
-}
+};
 
 1;
 __END__

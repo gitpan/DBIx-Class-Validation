@@ -1,5 +1,9 @@
 Revision history for DBIx::Class::Validation
 
+0.01004 Sat May 12 10:45:23 2007
+    - Use column accessors to set columns instead of set_column
+        (John Napiorkowski)
+
 0.01003 Tue May 08 18:49:11 2007
     - Fixed DBIC::Test comment snafu
     - Profiles can now be a subref that will dynamically generate the

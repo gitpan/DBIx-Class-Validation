@@ -1,4 +1,4 @@
-# $Id: Test.pm 3244 2007-05-06 00:45:21Z claco $
+# $Id: Test.pm 3312 2007-05-13 00:54:41Z claco $
 package DBIC::Test;
 use strict;
 use warnings;
@@ -44,7 +44,7 @@ sub init_schema {
     mkdir($db_dir) unless -d $db_dir;
 
     my $dsn = 'dbi:SQLite:' . $db;
-    my $schema = DBIC::Test::Schema->compose_namespace($namespace)->connect($dsn);
+    my $schema = DBIC::Test::Schema->compose_namespace($namespace)->connect($dsn, undef, undef, {AutoCommit => 1});
     $schema->storage->on_connect_do([
         'PRAGMA synchronous = OFF',
         'PRAGMA temp_store = MEMORY'

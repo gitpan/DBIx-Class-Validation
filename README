@@ -61,9 +61,9 @@ METHODS
         my $profile = sub {
             my $result = shift @_;
     
-            return {`   
+            return {
                 required => [qw/email/],
-                constraint_methods => {    
+                constraint_methods => {
                     email => sub {
                         my ($dvf, $val) = @_;
                         return $result->result_source->resultset->find({email=>$val}) ? 0:1;

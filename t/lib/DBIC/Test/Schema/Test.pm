@@ -1,4 +1,4 @@
-# $Id: Test.pm 3236 2007-05-05 16:24:35Z claco $
+# $Id: Test.pm 3312 2007-05-13 00:54:41Z claco $
 package DBIC::Test::Schema::Test;
 use strict;
 use warnings;
@@ -7,7 +7,7 @@ BEGIN {
     use base qw/DBIx::Class::Core/;
 };
 
-__PACKAGE__->load_components(qw/Validation PK::Auto Core/);
+__PACKAGE__->load_components(qw/Validation InflateColumn::DateTime PK::Auto Core/);
 __PACKAGE__->table('test');
 __PACKAGE__->add_columns(
     'id' => {
@@ -24,7 +24,12 @@ __PACKAGE__->add_columns(
         data_type => 'varchar',
         size => 100,
         is_nullable => 1,
-    }
+    },
+    'createts' => {
+        data_type => 'timestamp',
+        size => 14,
+        is_nullable => 1,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');
