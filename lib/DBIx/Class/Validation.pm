@@ -1,22 +1,24 @@
-# $Id: Validation.pm 3312 2007-05-13 00:54:41Z claco $
+# $Id: Validation.pm 3523 2007-06-25 01:14:00Z claco $
 package DBIx::Class::Validation;
 use strict;
 use warnings;
+our $VERSION = '0.02000';
 
 BEGIN {
-    use base qw/DBIx::Class/;
+    use base qw/DBIx::Class Class::Accessor::Grouped/;
     use English qw/-no_match_vars/;
     use FormValidator::Simple 0.17;
+    use Carp qw/croak/;
+
+    __PACKAGE__->mk_group_accessors('inherited', qw/
+        validation_profile
+        validation_auto
+        validation_filter
+        _validation_module_accessor
+    /);
 };
-
-our $VERSION = '0.01004';
-
-__PACKAGE__->mk_classdata('validation_profile');
-__PACKAGE__->mk_classdata('validation_auto' => 1);
-__PACKAGE__->mk_classdata('validation_filter' => 0);
-__PACKAGE__->mk_classdata('_validation_module_accessor');
+__PACKAGE__->validation_auto(1);
 __PACKAGE__->validation_module('FormValidator::Simple');
-
 
 =head1 NAME
 
@@ -180,7 +182,7 @@ sub validate {
         };
         return $result;
     } else {
-        $self->throw_exception($result);
+        croak $result;
     };
 };
 

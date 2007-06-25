@@ -1,5 +1,11 @@
 Revision history for DBIx::Class::Validation
 
+0.02000 Sun June 24 20:04:11 2007
+    - Converted to Class::Accessor::Grouped after mk_classdata
+        snafu in DBIC 0.08
+    - Validate now croaks instead of throw_exception to play
+        well with DBIx::Class::Exception
+
 0.01004 Sat May 12 10:45:23 2007
     - Use column accessors to set columns instead of set_column
         (John Napiorkowski)

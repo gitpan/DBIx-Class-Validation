@@ -21,4 +21,4 @@ requires:
   FormValidator::Simple: 0.17
   perl: 5.8.1
 tests: t/*.t t/*/*.t
-version: 0.01004
+version: 0.02000
