@@ -1,5 +1,5 @@
 #!perl -w
-# $Id: pod_spelling.t 3269 2007-05-08 23:52:01Z claco $
+# $Id: /local/DBIx-Class-Validation/t/pod_spelling.t 1657 2007-07-02T00:46:53.314348Z claco  $
 use strict;
 use warnings;
 
@@ -28,3 +28,4 @@ UPDATEs
 pre
 subref
 Napiorkowski
+CONTRIBUTERS

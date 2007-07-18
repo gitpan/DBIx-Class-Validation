@@ -1,5 +1,10 @@
 Revision history for DBIx::Class::Validation
 
+0.02001 Tue July 17 10:26:34 2007
+    - Added build_requires for DateTime::Format::MySQL
+    - Added WriteAll/DIST/PREOP for README
+    - Fixed spelling test failure
+
 0.02000 Sun June 24 20:04:11 2007
     - Converted to Class::Accessor::Grouped after mk_classdata
         snafu in DBIC 0.08

@@ -1,8 +1,8 @@
-# $Id: Validation.pm 3523 2007-06-25 01:14:00Z claco $
+# $Id: /local/DBIx-Class-Validation/lib/DBIx/Class/Validation.pm 1748 2007-07-18T00:28:30.126601Z claco  $
 package DBIx::Class::Validation;
 use strict;
 use warnings;
-our $VERSION = '0.02000';
+our $VERSION = '0.02001';
 
 BEGIN {
     use base qw/DBIx::Class Class::Accessor::Grouped/;

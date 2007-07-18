@@ -1,5 +1,5 @@
 #!perl -wT
-# $Id: pod_coverage.t 3236 2007-05-05 16:24:35Z claco $
+# $Id: /local/DBIx-Class-Validation/t/pod_coverage.t 1648 2007-05-05T16:24:35.775054Z claco  $
 use strict;
 use warnings;
 

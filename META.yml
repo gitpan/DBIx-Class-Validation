@@ -3,8 +3,9 @@ abstract: Validate all data before submitting to your database.
 author: Aran C. Deltac <bluefeet@cpan.org>
 build_requires: 
   DBD::SQLite: 1.11
+  DateTime::Format::MySQL: 0
 distribution_type: module
-generated_by: Module::Install version 0.65
+generated_by: Module::Install version 0.67
 license: perl
 meta-spec: 
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -21,4 +22,4 @@ requires:
   FormValidator::Simple: 0.17
   perl: 5.8.1
 tests: t/*.t t/*/*.t
-version: 0.02000
+version: 0.02001

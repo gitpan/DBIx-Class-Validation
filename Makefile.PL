@@ -1,4 +1,4 @@
-# $Id: Makefile.PL 3241 2007-05-05 19:20:12Z claco $
+# $Id: /local/DBIx-Class-Validation/Makefile.PL 1748 2007-07-18T00:28:30.126601Z claco  $
 use strict;
 use warnings;
 use inc::Module::Install 0.65;
@@ -12,6 +12,7 @@ requires 'DBIx::Class'           => '0.07005';
 requires 'FormValidator::Simple' => '0.17';
 
 build_requires 'DBD::SQLite'     => '1.11';
+build_requires 'DateTime::Format::MySQL';
 
 feature 'Data::FormValidator support',
     recommends
@@ -20,9 +21,10 @@ feature 'Data::FormValidator support',
 tests "t/*.t t/*/*.t";
 clean_files "DBIx-Class-Validation-* t/var";
 
-eval {
-    system 'pod2text lib/DBIx/Class/Validation.pm > README';
-};
-
 auto_install;
-WriteAll;
+
+WriteMakefile(
+  dist => {
+    PREOP => 'pod2text lib/DBIx/Class/Validation.pm > README'
+  }
+);
