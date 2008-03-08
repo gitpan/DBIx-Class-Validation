@@ -1,5 +1,8 @@
 Revision history for DBIx::Class::Validation
 
+0.02002 Fri Mar 7 19:38:12 2008
+    - Quick fix for CPANTS META/author
+
 0.02001 Tue July 17 10:26:34 2007
     - Added build_requires for DateTime::Format::MySQL
     - Added WriteAll/DIST/PREOP for README

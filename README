@@ -60,8 +60,8 @@ METHODS
 
         my $profile = sub {
             my $result = shift @_;
-    
-            return {
+        
+        return {
                 required => [qw/email/],
                 constraint_methods => {
                     email => sub {

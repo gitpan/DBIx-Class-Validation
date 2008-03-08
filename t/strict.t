@@ -1,5 +1,5 @@
 #!perl -wT
-# $Id: /local/DBIx-Class-Validation/t/strict.t 1648 2007-05-05T16:24:35.775054Z claco  $
+# $Id: /local/DBIx-Class-Validation/t/strict.t 1304 2007-05-05T16:24:35.775054Z claco  $
 use strict;
 use warnings;
 
