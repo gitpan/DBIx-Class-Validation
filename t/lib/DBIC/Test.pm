@@ -1,4 +1,4 @@
-# $Id: /local/DBIx-Class-Validation/t/lib/DBIC/Test.pm 1310 2007-05-13T00:54:41.574770Z claco  $
+# $Id: /local/DBIx-Class-Validation/t/lib/DBIC/Test.pm 1538 2008-04-23T01:15:16.143871Z claco  $
 package DBIC::Test;
 use strict;
 use warnings;
@@ -60,25 +60,15 @@ sub deploy_schema {
     my ($self, $schema, %options) = @_;
     my $eval = $options{'eval_deploy'};
 
-    eval 'use SQL::Translator';
-    if (!$@ && !$options{'no_deploy'}) {
-        eval {
-            $schema->deploy();
-        };
-        if ($@ && !$eval) {
-            die $@;
-        };
-    } else {
-        open IN, catfile('t', 'sql', 'test.sqlite.sql');
-        my $sql;
-        { local $/ = undef; $sql = <IN>; }
-        close IN;
-        eval {
-            ($schema->storage->dbh->do($_) || print "Error on SQL: $_\n") for split(/;\n/, $sql);
-        };
-        if ($@ && !$eval) {
-            die $@;
-        };
+    open IN, catfile('t', 'sql', 'test.sqlite.sql');
+    my $sql;
+    { local $/ = undef; $sql = <IN>; }
+    close IN;
+    eval {
+        ($schema->storage->dbh->do($_) || print "Error on SQL: $_\n") for split(/;\n/, $sql);
+    };
+    if ($@ && !$eval) {
+        die $@;
     };
 };
 

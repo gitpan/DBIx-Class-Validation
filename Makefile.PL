@@ -1,4 +1,4 @@
-# $Id: /local/DBIx-Class-Validation/Makefile.PL 1315 2008-03-08T00:42:15.377331Z claco  $
+# $Id: /local/DBIx-Class-Validation/Makefile.PL 1538 2008-04-23T01:15:16.143871Z claco  $
 use strict;
 use warnings;
 use inc::Module::Install 0.65;
@@ -18,7 +18,7 @@ feature 'Data::FormValidator support',
     recommends
         'Data::FormValidator';
 
-tests "t/*.t t/*/*.t";
+tests 't/*.t';
 clean_files "DBIx-Class-Validation-* t/var";
 
 eval {
