@@ -1,5 +1,5 @@
 #!perl -wT
-# $Id: /local/DBIx-Class-Validation/t/manifest.t 1315 2008-03-08T00:42:15.377331Z claco  $
+# $Id: /mirror/trunk/DBIx-Class-Validation/t/manifest.t 4152 2008-03-08T00:42:28.179532Z claco  $
 use strict;
 use warnings;
 

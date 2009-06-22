@@ -28,4 +28,5 @@ t/pod_syntax.t
 t/sql/test.sqlite.sql
 t/strict.t
 t/style_no_tabs.t
+t/var/test.db
 t/warnings.t

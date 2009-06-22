@@ -1,4 +1,4 @@
-# $Id: /local/DBIx-Class-Validation/Makefile.PL 1538 2008-04-23T01:15:16.143871Z claco  $
+# $Id: /mirror/trunk/DBIx-Class-Validation/Makefile.PL 6760 2009-06-22T12:52:54.917872Z ribasushi  $
 use strict;
 use warnings;
 use inc::Module::Install 0.65;
@@ -12,7 +12,7 @@ requires 'DBIx::Class'           => '0.07005';
 requires 'FormValidator::Simple' => '0.17';
 
 build_requires 'DBD::SQLite'     => '1.11';
-build_requires 'DateTime::Format::MySQL';
+build_requires 'DateTime::Format::SQLite';
 
 feature 'Data::FormValidator support',
     recommends
