@@ -1,5 +1,12 @@
 Revision history for DBIx::Class::Validation
 
+0.02005 Sat Jul 11 11:20:03 2009
+    - Fix bug that skipped validation when setting values while doing an
+        update() like this: $row->update($hashref) (Sergio Salvi) (RT#47709)
+    - Added .git, t/var to MANIFEST.SKIP and manifest.t (CLACO)
+    - Various spelling fixes (CLACO)
+    - Fixed SYNOPSIS examples (frioux, RT#47712)
+
 0.02004 Mon Jun 22 12:52:00 2009
     - Switch dependency to DateTime::Format::SQLite
 

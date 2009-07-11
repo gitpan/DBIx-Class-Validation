@@ -1,4 +1,4 @@
-# $Id: /mirror/trunk/DBIx-Class-Validation/t/lib/DBIC/Test.pm 4286 2008-04-23T01:15:37.302737Z claco  $
+# $Id$
 package DBIC::Test;
 use strict;
 use warnings;

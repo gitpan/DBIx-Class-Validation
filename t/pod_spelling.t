@@ -1,5 +1,5 @@
 #!perl -w
-# $Id: /mirror/trunk/DBIx-Class-Validation/t/pod_spelling.t 3560 2007-07-02T01:25:08.887575Z claco  $
+# $Id$
 use strict;
 use warnings;
 
@@ -23,6 +23,7 @@ __DATA__
 Aran
 Deltac
 Laco
+Salvi
 INSERTs
 UPDATEs
 pre

@@ -1,5 +1,5 @@
 #!perl -wT
-# $Id: /mirror/trunk/DBIx-Class-Validation/t/pod_syntax.t 3237 2007-05-05T16:24:35.775054Z claco  $
+# $Id$
 use strict;
 use warnings;
 

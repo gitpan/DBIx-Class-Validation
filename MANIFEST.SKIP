@@ -9,6 +9,7 @@ aegis.log$
 \bconfig$
 \bbuild$
 \.DS_Store$
+\.git
 
 # Avoid Makemaker generated and utility files.
 \bMakefile$
@@ -16,6 +17,7 @@ aegis.log$
 \bMakeMaker-\d
 \bpm_to_blib$
 \bblibdirs$
+t/var
 
 # Avoid Module::Build generated and utility files.
 \bBuild$

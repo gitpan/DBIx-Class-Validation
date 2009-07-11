@@ -1,5 +1,5 @@
 #!perl -wT
-# $Id: /mirror/trunk/DBIx-Class-Validation/t/manifest.t 4152 2008-03-08T00:42:28.179532Z claco  $
+# $Id$
 use strict;
 use warnings;
 
@@ -17,6 +17,6 @@ BEGIN {
 
 ok_manifest({
     exclude => ['/t/var', '/cover_db'],
-    filter  => [qr/\.svn/, qr/cover/, qr/Build(.(PL|bat))?/, qr/_build/, qr/\.tmproj/],
+    filter  => [qr/\.git/, qr/\.svn/, qr/cover/, qr/Build(.(PL|bat))?/, qr/_build/, qr/\.tmproj/],
     bool    => 'or'
 });

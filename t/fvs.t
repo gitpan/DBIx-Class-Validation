@@ -1,11 +1,11 @@
 #!perl -wT
-# $Id: /mirror/trunk/DBIx-Class-Validation/t/fvs.t 3237 2007-05-05T16:24:35.775054Z claco  $
+# $Id$
 use strict;
 use warnings;
 
 BEGIN {
     use lib 't/lib';
-    use DBIC::Test tests => 16;
+    use DBIC::Test tests => 17;
 }
 
 my $schema = DBIC::Test->init_schema;
@@ -31,6 +31,9 @@ is $row->name, 'qwerty', 'valid data accepted';
 $row->name('food');
 $row->update;
 is $row->name, 'food', 'valid data accepted';
+
+eval { $row->update({ name => "a" }) };
+isa_ok $@, 'FormValidator::Simple::Results', '$row->update($fields) also goes through validation';
 
 # without auto on update
 $row->validation_auto(0);

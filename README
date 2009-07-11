@@ -12,7 +12,7 @@ SYNOPSIS
       __PACKAGE__->validation(
         module => 'FormValidator::Simple',
         profile => { ... },
-        filters => 0,
+        filter => 0,
         auto => 1,
       );
 
@@ -28,7 +28,7 @@ METHODS
       __PACKAGE__->validation(
         module => 'FormValidator::Simple',
         profile => { ... },
-        filters => 0,
+        filter => 0,
         auto => 1,
       );
 
@@ -60,8 +60,8 @@ METHODS
 
         my $profile = sub {
             my $result = shift @_;
-        
-        return {
+    
+            return {
                 required => [qw/email/],
                 constraint_methods => {
                     email => sub {
@@ -117,9 +117,14 @@ SEE ALSO
 AUTHOR
     Aran C. Deltac <bluefeet@cpan.org>
 
-CONTRIBUTERS
-    Tom Kirkpatrick <tkp@cpan.org> Christopher Laco <claco@cpan.org> John
-    Napiorkowski <jjn1056@yahoo.com>
+CONTRIBUTORS
+    Tom Kirkpatrick <tkp@cpan.org>
+
+    Christopher Laco <claco@cpan.org>
+
+    John Napiorkowski <jjn1056@yahoo.com>
+
+    Sergio Salvi <sergio@developerl.com>
 
 LICENSE
     You may distribute this code under the same terms as Perl itself.

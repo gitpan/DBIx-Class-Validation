@@ -1,8 +1,8 @@
-# $Id: /mirror/trunk/DBIx-Class-Validation/lib/DBIx/Class/Validation.pm 6760 2009-06-22T12:52:54.917872Z ribasushi  $
+# $Id$
 package DBIx::Class::Validation;
 use strict;
 use warnings;
-our $VERSION = '0.02004';
+our $VERSION = '0.02005';
 
 BEGIN {
     use base qw/DBIx::Class Class::Accessor::Grouped/;
@@ -35,7 +35,7 @@ And in your subclasses:
   __PACKAGE__->validation(
     module => 'FormValidator::Simple',
     profile => { ... },
-    filters => 0,
+    filter => 0,
     auto => 1,
   );
 
@@ -53,7 +53,7 @@ And then somewhere else:
   __PACKAGE__->validation(
     module => 'FormValidator::Simple',
     profile => { ... },
-    filters => 0,
+    filter => 0,
     auto => 1,
   );
 
@@ -208,6 +208,9 @@ sub insert {
 
 sub update {
     my $self = shift;
+    my $columns = shift;
+
+    $self->set_inflated_columns($columns) if $columns;
     $self->validate if $self->validation_auto;
     $self->next::method(@_);
 };
@@ -225,11 +228,15 @@ L<"DBIx::Class">, L<"FormValidator::Simple">, L<"Data::FormValidator">
 
 Aran C. Deltac <bluefeet@cpan.org>
 
-=head1 CONTRIBUTERS
+=head1 CONTRIBUTORS
 
 Tom Kirkpatrick <tkp@cpan.org>
+
 Christopher Laco <claco@cpan.org>
+
 John Napiorkowski <jjn1056@yahoo.com>
+
+Sergio Salvi <sergio@developerl.com>
 
 =head1 LICENSE
 

@@ -1,4 +1,4 @@
-# $Id: /mirror/trunk/DBIx-Class-Validation/Makefile.PL 6760 2009-06-22T12:52:54.917872Z ribasushi  $
+# $Id$
 use strict;
 use warnings;
 use inc::Module::Install 0.65;
